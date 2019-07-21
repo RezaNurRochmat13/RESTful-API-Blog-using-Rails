@@ -31,6 +31,26 @@ class Api::V1::UserController < ApplicationController
         end
     end
 
+    def updateUsers
+        updateUsers = User.find(params[:id])
+
+        if updateUsers.update(user_param)
+            render json: {
+                message: "User berhasil diubah"
+            }
+        end
+    end
+
+    def deleteUsers
+        deleteUsers = User.find(params[:id])
+
+        if deleteUsers.destroy
+            render json: {
+                message: "User berhasil dihapus"
+            }
+        end
+    end
+
     private
     def user_param
         params.require(:user).permit(:name, :address, :phone_number)
