@@ -11,7 +11,8 @@ Rails.application.routes.draw do
 
       # Posts Endpoints
       get 'posts', to: 'posts#showAllPosts'
-      get 'posts/:id', to: 'posts#showPostByUserId'
+      get 'users/posts/:user_id', to: 'posts#showPostByUserId'
+      get 'posts/:posts_id', to: 'posts#showDetailPosts'
     end
   end
 end
