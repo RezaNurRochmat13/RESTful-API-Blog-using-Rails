@@ -44,4 +44,25 @@ class Api::V1::PostsController < ApplicationController
         }, status: :ok
         
     end
+
+    def createNewPosts
+        createNewPostPayload = Post.create(post_param)
+
+        if createNewPostPayload.save!
+            render json: {
+                "message": "Posts created successfully",
+                "created": post_param
+            }, status: 200
+        else
+            render json:{
+                "message": "Error has returned"
+            }
+        end
+
+    end
+
+    private
+    def post_param
+        params.require(:post).permit(:posts_name, :description_posts, :user_id)
+    end
 end
